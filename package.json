@@ -1,0 +1,23 @@
+{
+  "name": "practice",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "compile": "npx tsc",
+    "run": "node ./dest/bin/www.js",
+    "wcrun": "npx tsx ./src/bin/www.ts"
+  },
+  "dependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/express": "^5.0.2",
+    "@types/morgan": "^1.9.9",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.27"
+  }
+}
