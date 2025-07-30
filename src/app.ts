@@ -5,6 +5,8 @@ import logger from "morgan";
 import indexRouter from "./routes/index";
 import contactRouter from "./routes/contact";
 
+import "reflect-metadata";
+
 var app = express();
 
 app.use(logger("dev"));

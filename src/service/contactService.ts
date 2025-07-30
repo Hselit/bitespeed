@@ -1,8 +1,9 @@
-import { contact } from "./../../node_modules/.prisma/client/index.d";
+import { injectable } from "inversify";
 import { prisma } from "../utils/prisma";
 
+@injectable()
 export class ContactService {
-  static async getContact(data: any) {
+  async getContact(data: any) {
     try {
       if (!data.email && !data.phoneNumber) {
         console.log("in no data");

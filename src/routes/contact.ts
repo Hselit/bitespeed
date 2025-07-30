@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { getContactDeatils } from "../controller/contactController";
+import container from "../utils/inversify/container";
+import TYPE from "../utils/inversify/type";
+import { ContactController } from "../controller/contactController";
 
 const router = Router();
 
-router.post("/identify", getContactDeatils);
+const contController = container.get<ContactController>(TYPE.COntController);
+
+router.post("/identify", contController.getContactDeatils);
 
 export default router;
