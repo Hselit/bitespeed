@@ -1,18 +1,19 @@
 import { Request, Response } from "express";
-import { ContactService } from "../service/contactService";
 import { inject, injectable } from "inversify";
 import TYPE from "../utils/inversify/type";
+import { UserService } from "../service/userService";
 
 @injectable()
-export class ContactController {
-  constructor(@inject(TYPE.ContService) private cservice: ContactService) {}
+export class UserController {
+  constructor(@inject(TYPE.USERSERVICE) private uservice: UserService) {}
 
-  getContactDeatils = async (req: Request, res: Response) => {
+  addUserDeatils = async (req: Request, res: Response) => {
     try {
       const requestData = req.body;
-      const responseData = await this.cservice.getContact(requestData);
+      const responseData = await this.uservice.addUser(requestData);
+      console.log(responseData);
       if (typeof responseData == "string") {
-        res.status(404).json({ message: requestData });
+        res.status(400).json({ message: requestData });
         return;
       }
       res.status(200).json(responseData);
