@@ -19,12 +19,20 @@ router.post(
   })
 );
 
+// router.get("/google/login", passport.authenticate("google"));
+
+router.get("/google/login", passport.authenticate("google", { scope: ["profile", "email"] }));
+
 router.get("/profile", (req, res) => {
   if (req.isAuthenticated()) {
     res.render("profile");
   } else {
     res.render("login", { messages: { error: req.flash("error") } });
   }
+});
+
+router.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), (req, res) => {
+  res.redirect("/profile");
 });
 
 export default router;

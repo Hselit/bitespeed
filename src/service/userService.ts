@@ -1,8 +1,9 @@
+import { user } from "./../../node_modules/.prisma/client/index.d";
 import { injectable } from "inversify";
 import { userRequest } from "../dto/user.dto";
 import { prisma } from "../utils/prisma";
 import bcrypt from "bcrypt";
-
+import { Profile, VerifyCallback } from "passport-google-oauth20";
 @injectable()
 export class UserService {
   async verifyUser(username: string, password: string, done: any) {
@@ -45,6 +46,26 @@ export class UserService {
       return true;
     } catch (error) {
       throw error;
+    }
+  }
+
+  async findOrCreateUser(accessToken: string, refreshToken: string, profile: Profile, done: VerifyCallback) {
+    try {
+      let userDetail = await prisma.user.findUnique({ where: { googleId: profile.id } });
+      if (!userDetail) {
+        userDetail = await prisma.user.create({
+          data: {
+            googleId: profile.id,
+            username: profile.displayName,
+            email: profile.emails?.[0].value || "",
+            password: "$2a$10$2wq9pl1zSL9YcF3LhjWnxuGtyapsSDJVkL.uGi56UcCOKUQJV7pL2",
+            // default password googlepassword
+          },
+        });
+      }
+      return done(null, userDetail);
+    } catch (error) {
+      done(error);
     }
   }
 }

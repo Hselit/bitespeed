@@ -15,6 +15,7 @@ import { AuthHandler } from "./middleware/passport";
 import container from "./utils/inversify/container";
 import TYPE from "./utils/inversify/type";
 import flash from "connect-flash";
+import { GoogleAuth } from "./middleware/googlepass";
 
 const app = express();
 
@@ -56,6 +57,9 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 
 const usercont = container.get<AuthHandler>(TYPE.AUTHHANDLER);
 usercont.init();
+
+const googleAuth = container.get<GoogleAuth>(TYPE.GOOGLEAUTHHANDLER);
+googleAuth.initGoogleStratergy();
 
 app.use("/", indexRouter);
 app.use("/contact", contactRouter);

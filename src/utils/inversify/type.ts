@@ -4,6 +4,7 @@ const TYPE = {
   USERSERVICE: Symbol.for("UserService"),
   USERCONTROLLER: Symbol.for("UserController"),
   AUTHHANDLER: Symbol.for("AuthHandler"),
+  GOOGLEAUTHHANDLER: Symbol.for("GoogleAuth"),
 };
 
 export default TYPE;
