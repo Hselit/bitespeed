@@ -7,7 +7,7 @@ import TYPE from "../utils/inversify/type";
 export class ContactController {
   constructor(@inject(TYPE.ContService) private cservice: ContactService) {}
 
-  getContactDeatils = async (req: Request, res: Response) => {
+  async getContactDeatils(req: Request, res: Response) {
     try {
       const requestData = req.body;
       const responseData = await this.cservice.getContact(requestData);
@@ -21,5 +21,5 @@ export class ContactController {
       res.status(500).json({ message: "Internal Server Error" });
       return;
     }
-  };
+  }
 }

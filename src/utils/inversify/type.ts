@@ -5,6 +5,8 @@ const TYPE = {
   USERCONTROLLER: Symbol.for("UserController"),
   AUTHHANDLER: Symbol.for("AuthHandler"),
   GOOGLEAUTHHANDLER: Symbol.for("GoogleAuth"),
+  MEETINGCONTROLLER: Symbol.for("MeetingController"),
+  MEETINGSERVICE: Symbol.for("MeetingService"),
 };
 
 export default TYPE;

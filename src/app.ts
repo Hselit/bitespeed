@@ -8,6 +8,7 @@ import connectRedis, { RedisStore } from "connect-redis";
 import indexRouter from "./routes/index";
 import contactRouter from "./routes/contact";
 import userRouter from "./routes/user";
+import meetRouter from "./routes/meeting";
 
 import "reflect-metadata";
 import passport from "passport";
@@ -64,6 +65,7 @@ googleAuth.initGoogleStratergy();
 app.use("/", indexRouter);
 app.use("/contact", contactRouter);
 app.use("/user", userRouter);
+app.use("/meeting", meetRouter);
 
 export default app;
 
